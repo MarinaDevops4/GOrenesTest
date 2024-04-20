@@ -139,3 +139,27 @@ button:hover {
     background: #463552;
     border-radius: 10px;
   }
+  .error-message{
+    color: #cf6b6b;
+    text-align: center;
+    font-size: 0.9em;
+    margin: 0.5em;
+    background: #463552;
+    border-radius: 10px;
+  }
+
+  /* transictions styles */
+  /* Define la animación para la transición */
+.fade-in-out {
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  /* Establece la opacidad inicial a 0 para que el elemento esté oculto al principio */
+  .fade-in-out.hidden {
+    opacity: 0;
+  }
+  
+  /* Establece la opacidad a 1 para mostrar el elemento */
+  .fade-in-out.visible {
+    opacity: 1;
+  }
