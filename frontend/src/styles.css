@@ -1,8 +1,66 @@
+/* General Styles */
 
-
+/* Reset de estilos */
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos del formulario */
+form {
+  max-height: 280px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+/* Estilos de la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 9px; 
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: #0e001d; 
+  border-radius: 6px; 
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #31184b; 
+}
+
+
+::-webkit-scrollbar-track {
+  background-color: #31184b59; 
+}
+
+
+::-webkit-scrollbar-track:hover {
+  background-color: #969696; 
+}
+
+/* Estilos de los inputs */
+input[type="email"], input[type="password"], input[type="text"] {
+  border-radius: 50px;
+  border-color: #342341e0;
+  height: 34px;
+  font-size: 12px;
+  background-color: #463552;
+  color: rgba(255, 255, 255, 0.884);
+  margin-bottom: 3%;
+  padding-left: 2rem;
+}
+
+/* Estilos de las etiquetas */
+label {
+  font-size: 12px;
+}
+
+/* Estilos del cuerpo de la tarjeta */
+.card-body {
+  color: rgba(255, 255, 255, 0.884);
+  background: #342341e0;
+}
+
+/* End General Styles */

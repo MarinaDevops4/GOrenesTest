@@ -45,7 +45,36 @@ userCtrl.registerUser = async (req, res) => {
   }
 };
 userCtrl.userLogin = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user= await User.findOne({ email });
+    if (!user){
+      return res.status(404).json({message:'Usuario no encontrado'});
+    }
 
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Contraseña incorrecta' }); // Si la contraseña no coincide, devuelve un error 400
+    }
+
+
+    const token = jwt.sign(
+      { id: user._id, username: user.username, email: user.email },
+      process.env.JWT_SECRET,    // Usa una clave secreta almacenada en las variables de entorno
+      { expiresIn: '1h' }        // Establece la caducidad del token
+    );
+
+    // Enviar el token al cliente
+    res.json({ 
+      message: 'Login exitoso',
+      token, 
+      user: { id: user._id, username: user.username, email: user.email }
+    });
+
+  } catch (error) {
+    return res.status(500).json({ message: 'Error to login the user', error: error.message });
+  }
 };
 
 userCtrl.getUsers = async (req, res) => {
