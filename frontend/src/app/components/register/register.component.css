@@ -71,3 +71,33 @@
     background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
     color: #000652;
   }
+
+  .error-message {
+    color: #cf6b6b;
+    text-align: center;
+    font-size: 0.9em;
+    margin: 0.5em;
+    background: #463552;
+    border-radius: 10px;
+  }
+  .success-message {
+    color: #9ac59a;
+    text-align: center;
+    font-size: 0.9em;
+    margin: 0.5em;
+    background: #463552;
+    border-radius: 10px;
+  }
+
+  /* ERRORS STYLES */
+.invalid-feedback {
+  display: block;
+  color: #cf6b6b;
+  font-size: 0.7rem;
+  margin-bottom: 0.6rem;
+  padding-left: 0.5rem;
+}
+
+.invalid {
+  border-color: #dc3545; 
+}
