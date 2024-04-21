@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:3000/api/users';
+  private apiUrl = 'http://localhost:3000/api/users/register';
 
   constructor(private http: HttpClient) { }
 
@@ -15,13 +15,7 @@ export class UserService {
     console.log('API URL:', this.apiUrl);
     
     console.log(userData);
-    return this.http.post<any>(`${this.apiUrl}+ /register`, userData);
+    return this.http.post<any>(this.apiUrl, userData);
   }
 
-  // login(userData: any): Observable<any> {
-  //   console.log('API URL:', this.apiUrl);
-    
-  //   console.log(userData);
-  //   return this.http.post<any>(`${this.apiUrl}+ /login`, userData);
-  // }
 }

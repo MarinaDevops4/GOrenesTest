@@ -16,7 +16,7 @@ import { RegisterComponent } from '../register/register.component';
     RegisterComponent,
     HttpClientModule,
   ],
- 
+  providers: [AuthenticationService],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -66,8 +66,9 @@ export class LoginComponent implements OnInit {
         (response) => {
           console.log(response);
           if (response) {
-            // Login successful!
-            // ...
+            this.showSuccessMessage = true;
+            this.success = 'Bienvenid@ ' + response.name;
+            this.formSubmittedSuccessfully = true;
           } else {
             this.error = 'Error al iniciar sesión';
             this.showErrorMessages = true;

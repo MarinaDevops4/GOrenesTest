@@ -1,18 +1,29 @@
 
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ShareComponentDataService } from './services/Data/share-component-data.service';
+
+import { TokenInterceptor } from './../app/interceptor/token.interceptor';
+
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, LoginComponent, HttpClientModule, RegisterComponent, CommonModule]
-})
+    imports: [RouterOutlet, LoginComponent, HttpClientModule, RegisterComponent, CommonModule],
+    providers: [
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: TokenInterceptor,
+        multi: true,
+      }
+    ],
+  })
+  
 export class AppComponent implements OnInit{
   title = 'frontend';
   showRegisterForm: boolean = false;

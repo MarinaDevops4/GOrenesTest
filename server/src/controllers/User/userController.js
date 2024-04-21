@@ -32,20 +32,18 @@ userCtrl.registerUser = async (req, res) => {
     
 
     // Crear el JWT
-    const token = jwt.sign({ data: 'data' }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-    // Respuesta incluyendo el token
-    return res.status(201).json({
-      message: 'Usuario registrado exitosamente',
-      user: {
-        id: newUser._id,
-        username: newUser.username,
-        email: newUser.email,
-        password: newUser.password 
-
-      },
-      token
-    });
+   // Respuesta incluyendo el token
+   return res.status(201).json({
+    message: 'Usuario registrado exitosamente',
+    user: {
+      id: newUser._id,
+      username: newUser.username,
+      email: newUser.email
+    },
+    token
+  });
   } catch (error) {
     return res.status(500).json({ message: 'Error al registrar usuario', error: error });
   }

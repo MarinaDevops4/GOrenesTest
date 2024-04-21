@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthenticationService } from '../../services/Auth/authentication.service';
 import { ShareComponentDataService } from '../../services/Data/share-component-data.service';
 import { UserService } from './../../services/User/user.service';
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
-  providers: [UserService],
+  providers: [UserService, AuthenticationService],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -27,7 +28,7 @@ success = '';
 
 
 
-  constructor(private userService:UserService, private formBuilder: FormBuilder, private sharedService: ShareComponentDataService) {
+  constructor(private authService: AuthenticationService,private userService:UserService, private formBuilder: FormBuilder, private sharedService: ShareComponentDataService) {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -78,6 +79,9 @@ success = '';
       this.userService.registerUser(userData)
       .subscribe(response => {
         console.log('User registered successfully:', response);
+        if (response.token) {
+          this.authService.setToken(response.token);
+        }
         this.sharedService.setSharedVariable(false);
 
       }, error => {

@@ -8,13 +8,40 @@ import { Observable, map } from 'rxjs';
 export class AuthenticationService {
 
   private currentUserKey = 'currentUser';
+  private accessTokenKey = 'accessToken';
+  private tokenKey = 'accessToken';
+  
   private apiUrl = 'http://localhost:3000/api/users/login';
 
   constructor(private http: HttpClient) {
   }
 
-  // Método para iniciar sesión
+  logout(): void {
+    // Elimina el usuario actual y el token del localStorage
+    localStorage.removeItem(this.currentUserKey);
+    localStorage.removeItem(this.accessTokenKey);
+  }
 
+
+  getCurrentUser(): any {
+    const userString = localStorage.getItem(this.currentUserKey);
+    return userString ? JSON.parse(userString) : null;
+  }
+
+  getAccessToken(): string | null {
+    return localStorage.getItem(this.accessTokenKey);
+  }
+
+  isAuthenticated(): boolean {
+    // Verifica si el token de acceso está presente y es válido
+    return !!this.getAccessToken();
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  // Método para iniciar sesión
   login(email: string, password: string): Observable<any> {
     const loginData = { email, password };
     return this.http.post<any>(this.apiUrl, loginData)
@@ -25,15 +52,7 @@ export class AuthenticationService {
         })
       );
   }
-  // Método para cerrar sesión
-  logout(): void {
-    // Elimina el usuario actual del localStorage
-    localStorage.removeItem(this.currentUserKey);
-  }
 
-  // Método para obtener el usuario actual del localStorage
-  getCurrentUser(): any {
-    const userString = localStorage.getItem(this.currentUserKey);
-    return userString ? JSON.parse(userString) : null;
-  }
+
+
 }
