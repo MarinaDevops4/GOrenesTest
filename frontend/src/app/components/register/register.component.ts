@@ -42,9 +42,9 @@ success = '';
 
  
 
-  showLoginForm(): void {
-    this.sharedService.setSharedVariable(false);
-  }
+  // showLoginForm(): void {
+  //   this.sharedService.setSharedVariable(false);
+  // }
 
   togglePasswordVisibility(controlName: string) {
     if (controlName === 'password') {
@@ -53,8 +53,6 @@ success = '';
         this.inputTypeConfirm = this.inputTypeConfirm === 'password' ? 'text' : 'password';
     }
 }
-
-
 
   onSubmit() {
     if(this.registerForm.valid){
@@ -70,24 +68,22 @@ success = '';
     }
       console.log('Form validated');
 
-    const userData = {
-       name: this.registerForm.get('name')?.value,
-       email: this.registerForm.get('email')?.value,
-       password: this.registerForm.get('password')?.value,
-    }
+      const userData = {
+        username: this.registerForm.value.name,
+        email: this.registerForm.value.email,
+        password: this.registerForm.value.password
+      };
 
     if(userData){
       this.userService.registerUser(userData)
-      .subscribe(
-        response => {
-          console.log('Usuario registrado exitosamente:', response);
-          
-        },
-        error => {
-          console.error('Error al registrar usuario:', error);
-          
-        }
-      );
+      .subscribe(response => {
+        console.log('User registered successfully:', response);
+        this.sharedService.setSharedVariable(false);
+
+      }, error => {
+        console.error('Error registering user:', error);
+        // Handle registration errors (e.g., display error messages)
+      });
     }
 
 
@@ -97,22 +93,6 @@ success = '';
       console.log('Form not valid');
     }
   }
-
-  // registerUser(userData:object){
-  //   console.log(userData);
-  //   this.userService.registerUser(userData)
-  //   .subscribe(
-  //     response => {
-  //       console.log('Usuario registrado exitosamente:', response);
-        
-  //     },
-  //     error => {
-  //       console.error('Error al registrar usuario:', error);
-        
-  //     }
-  //   );
-
-  // }
 
    // Determine if error should be shown for a control
    shouldShowError(controlName: string) {

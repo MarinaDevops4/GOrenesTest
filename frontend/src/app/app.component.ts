@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ShareComponentDataService } from './services/Data/share-component-data.service';
 @Component({
     selector: 'app-root',
     standalone: true,
@@ -14,21 +15,25 @@ import { RegisterComponent } from './components/register/register.component';
 })
 export class AppComponent implements OnInit{
   title = 'frontend';
-
+  showRegisterForm: boolean = false;
   isChangeForm: boolean = false;
-  constructor(){
+
+  constructor(private sharedService: ShareComponentDataService){
 
   }
   
   
   ngOnInit(): void {
     this.isChangeForm = false;
+    this.sharedService.showRegisterForm$.subscribe(value => {
+      this.isChangeForm = value;
+      console.log(this.isChangeForm)
+    });
   }
 
 
   changeForm() {
     this.isChangeForm = !this.isChangeForm;
-    console.log(this.isChangeForm);
   }
 
 }

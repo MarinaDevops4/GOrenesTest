@@ -7,7 +7,7 @@ const userCtrl = {};
 // Controlador para el registro de usuarios
 userCtrl.registerUser = async (req, res) => {
   const { username, email, password } = req.body;
-
+  console.log(req.body);
   try {
     // Verificar si el usuario ya existe
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
@@ -25,7 +25,11 @@ userCtrl.registerUser = async (req, res) => {
       email,
       password: hashedPassword
     });
+
+    console.log(newUser);
     await newUser.save();
+
+    
 
     // Crear el JWT
     const token = jwt.sign({ data: 'data' }, process.env.JWT_SECRET);
@@ -35,9 +39,9 @@ userCtrl.registerUser = async (req, res) => {
       message: 'Usuario registrado exitosamente',
       user: {
         id: newUser._id,
-        name: newUser.name,
         username: newUser.username,
-        email: newUser.email, 
+        email: newUser.email,
+        password: newUser.password 
 
       },
       token
@@ -48,38 +52,42 @@ userCtrl.registerUser = async (req, res) => {
 };
 
 
+
+
 userCtrl.userLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user= await User.findOne({ email });
-    if (!user){
-      return res.status(404).json({message:'Usuario no encontrado'});
+    // Buscar el usuario por su correo electrónico
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
     }
 
-
+    // Verificar si la contraseña coincide
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Contraseña incorrecta' }); // Si la contraseña no coincide, devuelve un error 400
+      return res.status(400).json({ message: 'Contraseña incorrecta' });
     }
 
-
+    // Crear el token JWT
     const token = jwt.sign(
       { id: user._id, username: user.username, email: user.email },
-      process.env.JWT_SECRET,    // Usa una clave secreta almacenada en las variables de entorno
-      { expiresIn: '1h' }        // Establece la caducidad del token
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
     );
 
-    // Enviar el token al cliente
-    res.json({ 
-      message: 'Login exitoso',
-      token, 
+    // Enviar el token y la información del usuario al cliente
+    res.json({
+      message: 'Inicio de sesión exitoso',
+      token,
       user: { id: user._id, username: user.username, email: user.email }
     });
 
   } catch (error) {
-    return res.status(500).json({ message: 'Error to login the user', error: error.message });
+    return res.status(500).json({ message: 'Error al iniciar sesión del usuario', error: error.message });
   }
 };
+
 
 userCtrl.getUsers = async (req, res) => {
   try {

@@ -13,11 +13,11 @@ GET http://localhost:4000/api/users
 GET http://localhost:4000/api/users/66240a3176127d8ed9482147
 ###
 ###
-POST http://localhost:4000/api/users/login
+POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-    "email": "test3@example.com",
+    "email": "holas@holas.xom",
     "password": "123456"
 }
 ###
