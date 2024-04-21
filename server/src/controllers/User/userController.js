@@ -35,15 +35,19 @@ userCtrl.registerUser = async (req, res) => {
       message: 'Usuario registrado exitosamente',
       user: {
         id: newUser._id,
+        name: newUser.name,
         username: newUser.username,
-        email: newUser.email
+        email: newUser.email, 
+
       },
       token
     });
   } catch (error) {
-    return res.status(500).json({ message: 'Error al registrar usuario', error: error.message });
+    return res.status(500).json({ message: 'Error al registrar usuario', error: error });
   }
 };
+
+
 userCtrl.userLogin = async (req, res) => {
   const { email, password } = req.body;
   try {

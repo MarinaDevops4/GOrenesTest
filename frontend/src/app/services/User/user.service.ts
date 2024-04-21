@@ -7,11 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:4500/api/users/register';
+  private apiUrl = 'http://localhost:3000/api/users/register';
 
   constructor(private http: HttpClient) { }
 
-  registerUser(userData: any): Observable<any> {
+  registerUser(userData: object): Observable<any> {
+    console.log('API URL:', this.apiUrl);
+    
+    console.log(userData);
     return this.http.post<any>(this.apiUrl, userData);
   }
 }

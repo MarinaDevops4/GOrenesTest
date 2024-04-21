@@ -1,21 +1,7 @@
-<div class="card mb-3" style="width: 23rem;">
-  <!-- Card Image -->
-  <img class="card-img-top" src="./assets/img/bg/main-bg.jpg" alt="Card image cap" width="auto" height="250px">
-  
-  <!-- Card Body -->
-  <div class="card-body" *ngIf="!showRegisterForm && !formSubmittedSuccessfully && !showRegisterForm" [ngClass]="{'hidden': formSubmittedSuccessfully}">
-      <!-- Header -->
-      <div class="row text-center">
-          <div class="col-sm-8">
-              <h5 class="mb-3" style="float:right;">Acceso Usuario</h5>
-          </div>
-          <div class="col-sm-4">
-              <i class="fa-solid fa-user-plus new-user-icon" (click)="newUser()"></i>
-          </div>
-      </div>
-      
+
+
       <!-- Form -->
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"  *ngIf="!formSubmittedSuccessfully" [ngClass]="{'hidden': formSubmittedSuccessfully}">
           <!-- Email Input -->
           <div class="form-group position-relative">
               <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" autocomplete="off" 
@@ -42,7 +28,7 @@
               <button type="submit" class="btn btn-primary btn-acceder">Accede</button>
           </div>
       </form>
-  </div>
+
 
   <!-- Success Message -->
   <div *ngIf="formSubmittedSuccessfully && showSuccessMessage" class="success-message fade-in-out" [ngClass]="{'visible': showSuccessMessage}">
@@ -54,8 +40,3 @@
       </div>
   </div>
 
-  <!-- Register Component -->
-  <div *ngIf="showRegisterForm">
-      <app-register></app-register>
-  </div>
-</div>

@@ -1,11 +1,15 @@
 import { CommonModule } from '@angular/common';
+// import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ShareComponentDataService } from '../../services/Data/share-component-data.service';
+import { UserService } from './../../services/User/user.service';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
+  providers: [UserService],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -23,7 +27,7 @@ success = '';
 
 
 
-  constructor( private formBuilder: FormBuilder, private sharedService: ShareComponentDataService) {
+  constructor(private userService:UserService, private formBuilder: FormBuilder, private sharedService: ShareComponentDataService) {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -50,19 +54,7 @@ success = '';
     }
 }
 
-  // registerUser(userData: any): void {
-  //   this.userService.registerUser(userData)
-  //     .subscribe(
-  //       response => {
-  //         console.log('Usuario registrado exitosamente:', response);
-          
-  //       },
-  //       error => {
-  //         console.error('Error al registrar usuario:', error);
-          
-  //       }
-  //     );
-  // }
+
 
   onSubmit() {
     if(this.registerForm.valid){
@@ -77,11 +69,50 @@ success = '';
       return;
     }
       console.log('Form validated');
+
+    const userData = {
+       name: this.registerForm.get('name')?.value,
+       email: this.registerForm.get('email')?.value,
+       password: this.registerForm.get('password')?.value,
+    }
+
+    if(userData){
+      this.userService.registerUser(userData)
+      .subscribe(
+        response => {
+          console.log('Usuario registrado exitosamente:', response);
+          
+        },
+        error => {
+          console.error('Error al registrar usuario:', error);
+          
+        }
+      );
+    }
+
+
+
     }else{
       this.showErrorMessages = true;
       console.log('Form not valid');
     }
   }
+
+  // registerUser(userData:object){
+  //   console.log(userData);
+  //   this.userService.registerUser(userData)
+  //   .subscribe(
+  //     response => {
+  //       console.log('Usuario registrado exitosamente:', response);
+        
+  //     },
+  //     error => {
+  //       console.error('Error al registrar usuario:', error);
+        
+  //     }
+  //   );
+
+  // }
 
    // Determine if error should be shown for a control
    shouldShowError(controlName: string) {

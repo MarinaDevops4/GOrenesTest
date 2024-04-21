@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   success = '';
   currentUser: User | null | undefined;
   isNewUser:boolean = false;
-  showRegisterForm: boolean = false;
+ 
 
 
   constructor(private shareService:ShareComponentDataService, private formBuilder: FormBuilder, private authService:AuthenticationService) {
@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
     }
 
     // Subscribe to showRegisterForm changes
-    this.shareService.showRegisterForm$.subscribe(value => {
-      this.showRegisterForm = value;
-    });
+    // this.shareService.showRegisterForm$.subscribe(value => {
+    //   this.showRegisterForm = value;
+    // });
   }
 
   // Show register form
@@ -137,12 +137,12 @@ export class LoginComponent implements OnInit {
   }
 
   // Show new user registration form
-  newUser(){
-    console.log('newUser');
-    this.isNewUser = true;
-    this.showRegisterForm = true;
-    if(this.isNewUser){
-      this.showRegisterForm = true;
-    }
-  }
+  // newUser(){
+  //   console.log('newUser');
+  //   this.isNewUser = true;
+  //   this.showRegisterForm = true;
+  //   if(this.isNewUser){
+  //     this.showRegisterForm = true;
+  //   }
+  // }
 }
