@@ -44,7 +44,7 @@ El producto final debe ser el acceso a un repositorio git público o privado que
 
 Una vez que la aplicación está instalada y en funcionamiento, sigue estos pasos para usarla:
 
-- **Registro de Usuario:** Crea una cuenta si la aplicación incluye funcionalidad de registro.
+- **Registro de Usuario:** Crea una cuenta si no tienes ya cuenta creada.
 - **Inicio de Sesión:** Inicia sesión con tus credenciales de usuario.
 - **Explorar Funcionalidades:** ¿Conoces Angular? Espero que sí y si no siempre hay solución.
 - **Interactuar con la Interfaz de Usuario:** Utiliza la interfaz de usuario para realizar acciones específicas.
