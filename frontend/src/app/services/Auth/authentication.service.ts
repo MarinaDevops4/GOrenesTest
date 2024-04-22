@@ -1,58 +1,45 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-  private currentUserKey = 'currentUser';
   private accessTokenKey = 'accessToken';
-  private tokenKey = 'accessToken';
-  
-  private apiUrl = 'http://localhost:3000/api/users/login';
+  private authenticationChanged = new BehaviorSubject<boolean>(this.isAuthenticated());
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
-  logout(): void {
-    // Elimina el usuario actual y el token del localStorage
-    localStorage.removeItem(this.currentUserKey);
+  logout() {
     localStorage.removeItem(this.accessTokenKey);
+    this.authenticationChanged.next(false);
   }
 
-
-  getCurrentUser(): any {
-    const userString = localStorage.getItem(this.currentUserKey);
-    return userString ? JSON.parse(userString) : null;
-  }
-
-  getAccessToken(): string | null {
+  getAccessToken() {
     return localStorage.getItem(this.accessTokenKey);
   }
 
   isAuthenticated(): boolean {
-    // Verifica si el token de acceso está presente y es válido
-    return !!this.getAccessToken();
+    const token = this.getAccessToken();
+    if (!token) return false;
+
+    const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+    const expirationDate = new Date(tokenPayload.exp * 1000);
+    return expirationDate > new Date();
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+    localStorage.setItem(this.accessTokenKey, token);
+    this.authenticationChanged.next(true);
   }
 
-  // Método para iniciar sesión
+  getAuthenticationChanged(): Observable<boolean> {
+    return this.authenticationChanged.asObservable();
+  }
+
   login(email: string, password: string): Observable<any> {
     const loginData = { email, password };
-    return this.http.post<any>(this.apiUrl, loginData)
-      .pipe(
-        map(response => {
-          // Process login response (e.g., store JWT token)
-          return response;
-        })
-      );
+    return this.http.post<any>('http://localhost:3000/api/users/login', loginData);
   }
-
-
-
 }

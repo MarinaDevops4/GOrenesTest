@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { User } from '../../models/user';
 import { AuthenticationService } from '../../services/Auth/authentication.service';
 import { ShareComponentDataService } from '../../services/Data/share-component-data.service';
 import { RegisterComponent } from '../register/register.component';
@@ -28,9 +27,10 @@ export class LoginComponent implements OnInit {
   loading: boolean = false;
   error = '';
   success = '';
-  currentUser: User | null | undefined;
+  currentUser: any;
   isNewUser: boolean = false;
 
+  isLoggedIn: boolean = false;
   constructor(
     private shareService: ShareComponentDataService,
     private formBuilder: FormBuilder,
@@ -43,46 +43,43 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Get current user
-    this.currentUser = this.authService.getCurrentUser();
-    if (this.currentUser) {
-      this.formSubmittedSuccessfully = true;
-      this.showSuccessMessage = true;
-      this.success = 'Bienvenid@ ' + this.currentUser.name;
-    }
+    this.authService.getAuthenticationChanged().subscribe(authenticated => {
+      this.showSuccessMessage = authenticated;
+      if (authenticated) {
+        this.success = 'Bienvenido!';
+        this.formSubmittedSuccessfully = true;
+      }
+    });
   }
 
   // Handle form submission
   onSubmit() {
     if (this.loginForm.valid) {
+      this.loading = true;
       console.log('Formulario validado');
-
-      const email = this.loginForm.controls['email'].value;
-      const password = this.loginForm.controls['password'].value;
-      console.log(email);
-      console.log(password);
-
-      this.authService.login(email, password).subscribe(
-        (response) => {
-          console.log(response);
-          if (response) {
-            this.showSuccessMessage = true;
-            this.success = 'Bienvenid@ ' + response.name;
-            this.formSubmittedSuccessfully = true;
+      const { email, password } = this.loginForm.value;
+   
+      this.authService.login(email, password).subscribe({
+        next: (response) => {
+          this.loading = false;
+          if (response && response.token) {
+            this.authService.setToken(response.token);
+            this.success = 'Bienvenido ' + response.name; 
+            this.isLoggedIn = true;
+            this.shareService.setSharedVariable(this.isLoggedIn);
           } else {
-            this.error = 'Error al iniciar sesión';
+            this.error = 'Inicio de sesión fallido, por favor verifique sus credenciales.';
             this.showErrorMessages = true;
           }
         },
-        (error) => {
-          console.error(error);
-          this.error = 'Error al iniciar sesión: ' + error.message; // Handle specific errors
+        error: (error) => {
+          this.loading = false;
+          this.error = 'Error al iniciar sesión: ' + (error.error.message || error.message);
           this.showErrorMessages = true;
         }
-      );
+      });
     } else {
       this.showErrorMessages = true;
-      console.log('Error en el formulario');
     }
   }
 
@@ -134,5 +131,6 @@ export class LoginComponent implements OnInit {
   loggout() {
     this.authService.logout();
     this.formSubmittedSuccessfully = false;
+    this.isLoggedIn = false;
   }
 }

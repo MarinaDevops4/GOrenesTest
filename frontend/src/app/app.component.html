@@ -8,25 +8,36 @@
         <!-- Header -->
         <div class="row text-center mt-2">
           <div class="col-sm-8">
-            <h5 class="mb-3" style="float:right;">{{ isChangeForm ? 'Registro Usuario' : 'Acceso Usuario' }}</h5>
+            <h5 class="mb-3" style="float:right;">{{ isLoggedIn ? 'Bienvenido' : (isChangeForm ? 'Registro Usuario' : 'Acceso Usuario') }}</h5>
           </div>
           <div class="col-sm-4">
-            <ng-container *ngIf="isChangeForm; else loginIcon">
-              <i class="fa-solid fa-user-plus" (click)="changeForm()"></i>
+            <ng-container *ngIf="isLoggedIn; else changeFormIcon">
+              <!-- Si el usuario está logueado, puedes agregar un icono para cerrar sesión o similar aquí -->
+              <i class="fa-solid fa-sign-out-alt" (click)="logout()"></i>
             </ng-container>
-            <ng-template #loginIcon>
-              <i class="fa-solid fa-user" (click)="changeForm()"></i>
+            <ng-template #changeFormIcon>
+              <ng-container *ngIf="isChangeForm; else loginIcon">
+                <i class="fa-solid fa-user" (click)="changeForm()"></i>
+              </ng-container>
+              <ng-template #loginIcon>
+                <i class="fa-solid fa-user-plus" (click)="changeForm()"></i>
+              </ng-template>
             </ng-template>
           </div>
-      
         </div>
         <!-- Card Body -->
         <div class="card-body">
-          <app-login *ngIf="!isChangeForm"></app-login>
-          <!-- Register Component -->
-          <div *ngIf="isChangeForm">
-            <app-register></app-register> 
-          </div>
+          <!-- Mostrar home si el usuario está logueado -->
+          <ng-container *ngIf="isLoggedIn; else authenticationSection">
+            <app-home></app-home>
+          </ng-container>
+          <!-- Sección de autenticación -->
+          <ng-template #authenticationSection>
+            <app-login *ngIf="!isChangeForm"></app-login>
+            <div *ngIf="isChangeForm">
+              <app-register></app-register>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>

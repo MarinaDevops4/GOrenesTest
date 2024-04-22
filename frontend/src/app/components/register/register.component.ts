@@ -21,6 +21,7 @@ hiddenRegisterForm:boolean = false;
 inputTypePass: string = 'password';
 inputTypeConfirm: string = 'password';
 
+
 showErrorMessages:boolean = false;
 showSuccessMessage:boolean = false;
 
@@ -38,7 +39,7 @@ success = '';
     });
    }
   ngOnInit(): void {
- 
+    
   }
 
  
@@ -79,9 +80,10 @@ success = '';
       this.userService.registerUser(userData)
       .subscribe(response => {
         console.log('User registered successfully:', response);
-        if (response.token) {
-          this.authService.setToken(response.token);
-        }
+        // if (response.token) {
+        //   this.authService.setToken(response.token);
+          
+        // }
         this.sharedService.setSharedVariable(false);
 
       }, error => {

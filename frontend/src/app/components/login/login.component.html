@@ -1,5 +1,3 @@
-
-
       <!-- Form -->
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"  *ngIf="!formSubmittedSuccessfully" [ngClass]="{'hidden': formSubmittedSuccessfully}">
           <!-- Email Input -->
@@ -30,13 +28,4 @@
       </form>
 
 
-  <!-- Success Message -->
-  <div *ngIf="formSubmittedSuccessfully && showSuccessMessage" class="success-message fade-in-out" [ngClass]="{'visible': showSuccessMessage}">
-      <div class="card text-center">
-          <div class="card-body">{{ getSuccessMessage() }}</div>
-          <div class="card-footer text-muted">
-              <button class="btn btn-primary btn-acceder" (click)="loggout()"><i class="fa-solid fa-right-from-bracket"></i></button>
-          </div> 
-      </div>
-  </div>
 
