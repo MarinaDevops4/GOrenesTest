@@ -27,10 +27,8 @@ export class LoginComponent implements OnInit {
   loading: boolean = false;
   error = '';
   success = '';
-  currentUser: any;
-  isNewUser: boolean = false;
-
   isLoggedIn: boolean = false;
+  
   constructor(
     private shareService: ShareComponentDataService,
     private formBuilder: FormBuilder,
@@ -43,6 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Suscribirse a cambios en la autenticación
     this.authService.getAuthenticationChanged().subscribe(authenticated => {
       this.showSuccessMessage = authenticated;
       if (authenticated) {
@@ -52,7 +51,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // Handle form submission
+  // Manejar el envío del formulario
   onSubmit() {
     if (this.loginForm.valid) {
       this.loading = true;
@@ -63,27 +62,35 @@ export class LoginComponent implements OnInit {
         next: (response) => {
           this.loading = false;
           if (response && response.token) {
+            // Iniciar sesión exitosa
             this.authService.setToken(response.token);
             this.success = 'Bienvenido ' + response.name; 
             this.isLoggedIn = true;
             this.shareService.setSharedVariable(this.isLoggedIn);
           } else {
+            // Mostrar mensaje de error para credenciales inválidas
             this.error = 'Inicio de sesión fallido, por favor verifique sus credenciales.';
             this.showErrorMessages = true;
           }
         },
         error: (error) => {
           this.loading = false;
-          this.error = 'Error al iniciar sesión: ' + (error.error.message || error.message);
+          if (error.status === 400 && error.error.message === 'Contraseña incorrecta') {
+            // Mostrar mensaje de error específico para contraseña incorrecta
+            this.error = 'La contraseña ingresada no es correcta';
+          } else {
+            // Mostrar mensaje de error genérico
+            this.error = (error.error.message || error.message);
+          }
           this.showErrorMessages = true;
-        }
+      },
       });
     } else {
       this.showErrorMessages = true;
     }
   }
 
-  // Determine if error should be shown for a control
+  // Determinar si se debe mostrar un error para un control
   shouldShowError(controlName: string) {
     const control = this.loginForm.get(controlName);
     return (
@@ -92,7 +99,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  // Get error message for a control
+  // Obtener mensaje de error para un control
   getErrorMessage(controlName: string) {
     const control = this.loginForm.get(controlName);
 
@@ -107,16 +114,17 @@ export class LoginComponent implements OnInit {
     return 'Error desconocido';
   }
 
-  // Get success message
+  // Obtener mensaje de éxito
   getSuccessMessage(): string {
     return this.success;
   }
 
+  // Ocultar mensajes de error
   hideErrorMessages() {
     this.showErrorMessages = false;
   }
 
-  // Mark control as invalid
+  // Marcar control como inválido
   markControlAsInvalid(controlName: string) {
     const control = this.loginForm.get(controlName);
     console.log(control);
@@ -127,8 +135,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // Logout user
-  loggout() {
+  // Cerrar sesión del usuario
+  logout() {
     this.authService.logout();
     this.formSubmittedSuccessfully = false;
     this.isLoggedIn = false;

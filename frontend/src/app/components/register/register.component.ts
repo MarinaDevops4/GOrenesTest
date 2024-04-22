@@ -5,12 +5,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/Auth/authentication.service';
 import { ShareComponentDataService } from '../../services/Data/share-component-data.service';
-import { UserService } from './../../services/User/user.service';
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
-  providers: [UserService, AuthenticationService],
+  providers: [AuthenticationService],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -29,7 +28,7 @@ success = '';
 
 
 
-  constructor(private authService: AuthenticationService,private userService:UserService, private formBuilder: FormBuilder, private sharedService: ShareComponentDataService) {
+  constructor(private authService: AuthenticationService, private formBuilder: FormBuilder, private sharedService: ShareComponentDataService) {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -42,11 +41,6 @@ success = '';
     
   }
 
- 
-
-  // showLoginForm(): void {
-  //   this.sharedService.setSharedVariable(false);
-  // }
 
   togglePasswordVisibility(controlName: string) {
     if (controlName === 'password') {
@@ -77,13 +71,10 @@ success = '';
       };
 
     if(userData){
-      this.userService.registerUser(userData)
+      this.authService.registerUser(userData)
       .subscribe(response => {
         console.log('User registered successfully:', response);
-        // if (response.token) {
-        //   this.authService.setToken(response.token);
-          
-        // }
+      
         this.sharedService.setSharedVariable(false);
 
       }, error => {

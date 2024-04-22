@@ -58,13 +58,15 @@ userCtrl.userLogin = async (req, res) => {
     // Buscar el usuario por su correo electrónico
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: 'Usuario no encontrado' });
+      // El correo electrónico no existe en la base de datos
+      return res.status(404).json({ message: 'El correo electrónico proporcionado no está registrado' });
     }
 
     // Verificar si la contraseña coincide
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Contraseña incorrecta' });
+      // La contraseña proporcionada no es correcta
+      return res.status(400).json({ message: 'La contraseña ingresada no es correcta' });
     }
 
     // Crear el token JWT
@@ -82,9 +84,11 @@ userCtrl.userLogin = async (req, res) => {
     });
 
   } catch (error) {
+    // Manejar errores generales
     return res.status(500).json({ message: 'Error al iniciar sesión del usuario', error: error.message });
   }
 };
+
 
 
 userCtrl.getUsers = async (req, res) => {
@@ -111,6 +115,44 @@ userCtrl.getUser = async (req, res) => {
     res.status(500).json({ message: 'Error al buscar al usuario', error: error.message }); // Manejo de errores en caso de fallo en la operación
   }
 };
+
+
+
+userCtrl.getUserByToken = async (req, res) => {
+    try {
+        // Verifica si existe el encabezado de autorización
+        if (!req.headers.authorization) {
+            return res.status(401).json({ message: 'Token de autorización no proporcionado' });
+        }
+
+        // Extrae el token del encabezado 'Authorization'
+        const token = req.headers.authorization.split(' ')[1];
+
+        // Verifica y decodifica el token para obtener el ID de usuario
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decoded.id;
+        console.log(userId);
+
+        // Busca al usuario por su ID
+        const user = await User.findById(userId);
+        console.log(user);
+
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        res.status(200).json(user);
+    } catch (error) {
+        // Manejo de errores al verificar o decodificar el token
+        if (error.name === 'JsonWebTokenError') {
+            return res.status(401).json({ message: 'Token inválido' });
+        }
+        res.status(500).json({ message: 'Error al buscar al usuario', error: error.message });
+    }
+};
+
+  
+
 
 module.exports = userCtrl;
 

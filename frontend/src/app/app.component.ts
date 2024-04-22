@@ -26,6 +26,8 @@ export class AppComponent implements OnInit{
   showRegisterForm: boolean = false;
   isChangeForm: boolean = false;
   isLoggedIn: boolean = false;
+  loginHover: boolean = false;
+  registerHover: boolean = false;
 
 
   constructor(private sharedService: ShareComponentDataService, private authService: AuthenticationService){

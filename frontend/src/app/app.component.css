@@ -136,6 +136,48 @@ button:hover {
 }
 
 
+.bocadillo {
+  position: absolute;
+  background-color: #72528ada;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  z-index: 1;
+  width: 120px; 
+}
+
+.bocadillo::before {
+  content: '';
+  position: absolute;
+  border-width: 8px;
+  border-style: solid;
+}
+
+.bocadillo-top::before {
+  top: -15px;
+  border-color: transparent transparent #fff transparent;
+}
+
+.bocadillo-bottom::before {
+  bottom: -16px;
+  border-color: #fff transparent transparent transparent;
+}
+
+.bocadillo-left::before {
+  left: -16px; /* Ajusta la posición horizontal de la punta */
+  top: 50%; /* Centra la punta verticalmente */
+  transform: translateY(-50%); /* Ajusta la posición vertical de la punta */
+  border-color: transparent #72528ada transparent transparent;
+}
+.bocadillo-right::before {
+  right: 20px;
+  border-color: transparent transparent transparent #fff;
+}
+
+
 
   
   
