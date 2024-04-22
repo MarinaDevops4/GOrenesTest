@@ -1,28 +1,58 @@
+<!-- HomeComponent HTML -->
 <div class="card-body text-center">
     <div class="container">
       <div class="row">
         <div class="col-sm">
           <div class="card" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title">{{ userName }}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Intentos restantes: {{ intentosRestantes }}</h6>
-              <h6 class="card-subtitle mb-2 text-muted">Preguntas restantes: {{ 5 - aciertos }}</h6>
-  
-              <div *ngIf="preguntaActual">
-                <h6>{{ preguntaActual.enunciado }}</h6>
-                <ul>
-                  <li *ngFor="let opcion of preguntaActual.opciones">
-                    <label>
-                      <input type="radio" name="respuesta" [value]="opcion" (change)="seleccionarRespuesta(opcion)">
-                      {{ opcion.texto }}
-                    </label>
-                  </li>
-                </ul>
-              </div>
-  
-              <div *ngIf="juegoTerminado">
-                <p>{{ mensaje }}</p>
-                <button (click)="reiniciarJuego()">Reiniciar</button>
+              
+              <div class="card-text">
+                <div *ngIf="!mostrarQuiz">
+                    <h5 class="card-title">Bienvenida/o {{ userName }}</h5>
+                  <!-- Botón para iniciar el juego -->
+                  <p>¿Quieres empezar el QUIZ?</p>
+                  <button class="btn btn-primary btn-acceder" (click)="cargarPreguntasYMostrarQuiz()">Empezar</button>
+                </div>
+                <div *ngIf="preguntaActual && !juegoTerminado && mostrarQuiz">
+                
+                      
+                    
+                  <h6>{{ preguntaActual.enunciado }}</h6>
+                  <div class="row">
+                    <div class="col-sm" *ngFor="let opcion of preguntaActual.opciones">
+                      <label>
+                        <input type="radio" name="respuesta" [value]="opcion" (change)="seleccionarRespuesta(opcion)">
+                        {{ opcion.texto }}
+                      </label>
+                    </div>
+                 
+                  </div>
+                  <div class="card-footer text-muted">
+                  <div class="row">
+                    <div class="col-sm text-muted">
+                      <i class="fa-solid fa-heart"></i> {{ intentosRestantes }}
+                    </div>
+                    <div class="col-sm text-muted">
+                      <i class="fa-solid fa-check"></i> {{ 5 - aciertos }}
+                    </div>
+                  
+                  </div>
+                  </div>
+                </div>
+                <div *ngIf="juegoTerminado">
+                    <ng-container *ngIf="aciertos === 5">
+                        <p>¡Enhorabuena! Conoces algo de Angular <i class="fa-regular fa-face-smile"></i> </p>
+                      </ng-container>
+                      <!-- Mostrar mensaje de recomendación si el jugador no ganó -->
+                      <ng-container *ngIf="aciertos !== 5">
+                        <p>Lo siento, tienes que practicar más  <i class="fa-solid fa-book-open"></i> : <a href="https://angular.io/docs" target="_blank">Accede aquí</a> </p>
+                        
+                       
+                        
+                      </ng-container>
+                      <!-- Botón para reiniciar el juego -->
+                      <button class="btn btn-primary btn-acceder" (click)="reiniciarJuego()">Reiniciar</button>
+                    </div>
               </div>
             </div>
           </div>
