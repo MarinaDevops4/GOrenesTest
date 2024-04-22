@@ -146,7 +146,7 @@ success = '';
   arePasswordsEqual(): boolean {
     const password = this.registerForm.get('password')?.value;
     const confirmPassword = this.registerForm.get('confirmPassword')?.value;
-    console.log(password, confirmPassword);
+    // console.log(password, confirmPassword);
     return password === confirmPassword;
   }
   
