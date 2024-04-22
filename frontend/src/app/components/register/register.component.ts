@@ -77,7 +77,7 @@ errorMessage: string = '';
             // Verificar si el registro fue exitoso
             if (response && response.message === 'Usuario registrado exitosamente') {
               // Emite el evento para mostrar el formulario de inicio de sesión
-              this.sharedService.setSharedVariable(true);
+              this.sharedService.setSharedVariable(false);
             } else {
               // El usuario ya existe en la base de datos, muestra un mensaje
               this.errorMessage = 'El usuario ya existe en la base de datos';

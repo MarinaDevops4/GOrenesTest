@@ -43,18 +43,18 @@ import { AuthenticationService } from './services/Auth/authentication.service';
       // Suscripción al cambio de formulario
       this.sharedService.showRegisterForm$.subscribe((value) => {
               // Solo actualiza isChangeForm si el formulario de registro está activo
-        if (value) {
+        if (!value) {
           console.log(value);
-          this.isChangeForm = true;
+          this.isChangeForm = false;
         }
 
         // Si el usuario ya ha iniciado sesión, mantiene isLoggedIn en true
-        if (!value && this.isLoggedIn) {
-          this.isChangeForm = false; // Asegura que isChangeForm se restablezca si el usuario cierra sesión
+        if (!this.isLoggedIn) {
+          this.isChangeForm = value; 
         }
 
         // Actualiza isLoggedIn basado en el valor actual de value
-        this.isLoggedIn = value;
+         this.isLoggedIn = value;
       });
   
       // Suscripción al cambio de estado de autenticación
@@ -66,6 +66,7 @@ import { AuthenticationService } from './services/Auth/authentication.service';
       const userLoggedIn = this.authService.getAccessToken();
       if (userLoggedIn) {
         this.isLoggedIn = true;
+        console.log('user is ', this.isLoggedIn)
       } else {
         this.isLoggedIn = false;
       }
@@ -76,7 +77,7 @@ import { AuthenticationService } from './services/Auth/authentication.service';
       this.isChangeForm = !this.isChangeForm;
     }
   
-    // Cierra la sesión del usuario
+ 
     logout() {
       this.authService.logout();
       this.isChangeForm = false;

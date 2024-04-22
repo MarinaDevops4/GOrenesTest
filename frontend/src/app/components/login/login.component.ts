@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       console.log('Formulario validado');
       const { email, password } = this.loginForm.value;
-   
-      this.authService.login(email, password).subscribe({
+      const lowercaseEmail = email.toLowerCase();
+      this.authService.login(lowercaseEmail, password).subscribe({
         next: (response) => {
           this.loading = false;
           if (response && response.token) {
