@@ -107,7 +107,7 @@ export class HomeComponent implements OnInit {
     this.juegoTerminado = true;
     this.preguntaActual = null;
     this.respuestaSeleccionada = null;
-    alert(mensaje); // Mostrar mensaje mediante alerta, puedes personalizar esto según tus preferencias de UI
+    alert(mensaje); 
   }
 
    // Reiniciar el juego
@@ -116,6 +116,6 @@ export class HomeComponent implements OnInit {
     this.fallos = 0;
     this.intentosRestantes = 3;
     this.juegoTerminado = false;
-    this.mostrarQuiz = false; // Ocultar el quiz al reiniciar el juego
+    this.mostrarQuiz = false; 
   }
 }

@@ -52,13 +52,13 @@ success = '';
 
   onSubmit() {
     if(this.registerForm.valid){
-       // Verificar si las contraseñas coinciden
+     
     const password = this.registerForm.get('password')?.value;
     const confirmPassword = this.registerForm.get('confirmPassword')?.value;
     if (password !== confirmPassword) {
-      // Establecer el error de contraseña que no coincide en el formulario
+    
       this.registerForm.get('confirmPassword')?.setErrors({ 'passwordMismatch': true });
-      // Mostrar el mensaje de error
+     
       this.showErrorMessages = true;
       return;
     }
@@ -79,7 +79,7 @@ success = '';
 
       }, error => {
         console.error('Error registering user:', error);
-        // Handle registration errors (e.g., display error messages)
+        
       });
     }
 
@@ -139,7 +139,7 @@ success = '';
       if (control) {
         control.markAsTouched(); 
         control.markAsDirty(); 
-        control.setErrors({ 'invalid': true }); // Marcar el control como inválido
+        control.setErrors({ 'invalid': true }); 
       }
   }
   

@@ -46,7 +46,7 @@ Una vez que la aplicación está instalada y en funcionamiento, sigue estos paso
 
 - **Registro de Usuario:** Crea una cuenta si la aplicación incluye funcionalidad de registro.
 - **Inicio de Sesión:** Inicia sesión con tus credenciales de usuario.
-- **Explorar Funcionalidades:** Explora las diferentes funcionalidades disponibles en la aplicación.
+- **Explorar Funcionalidades:** ¿Conoces Angular? Espero que sí y si no siempre hay solución.
 - **Interactuar con la Interfaz de Usuario:** Utiliza la interfaz de usuario para realizar acciones específicas.
 - **Cerrar Sesión:** Cierra sesión para proteger tu cuenta y datos personales.
 

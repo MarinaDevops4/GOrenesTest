@@ -4,11 +4,11 @@ ul{
 }
 
 .correcta {
-    background-color: lightgreen; /* Fondo verde para respuestas correctas */
+    background-color: lightgreen; 
 }
 
 .incorrecta {
-    background-color: lightcoral; /* Fondo rojo para respuestas incorrectas */
+    background-color: lightcoral; 
 }
 
 .text-muted{

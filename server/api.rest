@@ -10,7 +10,7 @@ Content-Type: application/json
 GET http://localhost:4000/api/users
 ###
 ###
-GET http://localhost:3000/api/users/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MjYyM2JmYjMyZWE5NGI3NmE4MGIxOSIsInVzZXJuYW1lIjoiR2VtbXkiLCJlbWFpbCI6ImdlbW15QGdtYWlsLmNvbSIsImlhdCI6MTcxMzc3NTkyNCwiZXhwIjoxNzEzNzc5NTI0fQ.426xFlPWmX5xDdPhkvPDlZOa7vYUQmQ-wsNUDA_HVA8
+GET http://localhost:3000/api/users/
 ###
 ###
 POST http://localhost:3000/api/users/login
