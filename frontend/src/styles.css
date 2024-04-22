@@ -1,6 +1,4 @@
-/* General Styles */
-
-/* Reset de estilos */
+/* Reset de estilos para html y body */
 html, body {
   height: 100%;
   margin: 0;
@@ -19,22 +17,20 @@ form {
   width: 9px; 
 }
 
-
+/* Estilos del pulgar de la barra de desplazamiento */
 ::-webkit-scrollbar-thumb {
   background-color: #0e001d; 
   border-radius: 6px; 
 }
 
-
 ::-webkit-scrollbar-thumb:hover {
   background-color: #31184b; 
 }
 
-
+/* Estilos de la pista de la barra de desplazamiento */
 ::-webkit-scrollbar-track {
   background-color: #31184b59; 
 }
-
 
 ::-webkit-scrollbar-track:hover {
   background-color: #969696; 
@@ -57,10 +53,61 @@ label {
   font-size: 12px;
 }
 
-/* Estilos del cuerpo de la tarjeta */
-.card-body {
-  color: rgba(255, 255, 255, 0.884);
-  background: #342341e0;
+/* Estilos de las transiciones */
+.fade-in-out {
+  transition: opacity 0.5s ease-in-out;
 }
 
-/* End General Styles */
+.fade-in-out.hidden {
+  opacity: 0;
+}
+
+.fade-in-out.visible {
+  opacity: 1;
+}
+
+/* Cursor apuntador para elementos con etiqueta i */
+i {
+  cursor: pointer;
+}
+
+/* Estilos del control de formulario enfocado */
+.form-control:focus {
+  border-color: #463552;
+  box-shadow: none;
+}
+
+
+/* BOCADILLO STYLES */
+.bocadillo {
+  position: absolute;
+  background-color: #72528afd;
+  color: #fff;
+  padding: 8px 2px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-left: 18px;
+  margin-top: -6px;
+  z-index: 1;
+  width: 90px;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.7);
+}
+
+.bocadillo::before {
+  content: '';
+  position: absolute;
+  border-width: 8px;
+  border-style: solid;
+}
+
+.bocadillo-left::before {
+  left: -16px; /* Ajusta la posición horizontal de la punta */
+  top: 50%; /* Centra la punta verticalmente */
+  transform: translateY(-50%); /* Ajusta la posición vertical de la punta */
+  border-color: transparent #72528afd transparent transparent;
+}
+
+.bocadillo-right::before {
+  right: 20px;
+  border-color: transparent transparent transparent #fff;
+}

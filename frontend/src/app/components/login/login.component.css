@@ -32,24 +32,6 @@
 }
 
 
-/* SUCCESS & ERROR MESSAGE STYLES */
-.error-message {
-  color: #cf6b6b;
-  text-align: center;
-  font-size: 0.9em;
-  margin: 0.5em;
-  background: #463552;
-  border-radius: 10px;
-}
-.success-message {
-  color: #9ac59a;
-  text-align: center;
-  font-size: 0.9em;
-  margin: 0.5em;
-  background: #463552;
-  border-radius: 10px;
-}
-
 /* TRANSITIONS STYLES */
 .fade-in-out {
   transition: opacity 0.5s ease-in-out;
@@ -61,10 +43,6 @@
 
 .fade-in-out.visible {
   opacity: 1;
-}
-
-.new-user-icon {
-  cursor: pointer;
 }
 
 .form-control:focus {

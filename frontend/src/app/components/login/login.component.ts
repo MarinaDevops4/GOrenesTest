@@ -135,10 +135,5 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // Cerrar sesión del usuario
-  logout() {
-    this.authService.logout();
-    this.formSubmittedSuccessfully = false;
-    this.isLoggedIn = false;
-  }
+
 }

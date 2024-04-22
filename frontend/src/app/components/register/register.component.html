@@ -2,33 +2,53 @@
 
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form-group position-relative">
-          <input type="text" class="form-control" formControlName="name" id="name" aria-describedby="emailHelp" autocomplete="off" placeholder="Introduce el Nombre">
+          <input type="text" class="form-control" formControlName="name"
+           id="name" aria-describedby="emailHelp" autocomplete="off"
+            placeholder="Introduce el Nombre" (input)="hideErrorMessages()"
+            [ngClass]="{ 'invalid': shouldShowError('name') }"
+            >
           <i class="fa-regular fa-user position-absolute top-50 translate-middle-y" style="left: 10px;"></i>
       </div>
       <span class="invalid-feedback" *ngIf="shouldShowError('name')">{{ getErrorMessage('name') }}</span>
 
       <div class="form-group position-relative">
-          <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" autocomplete="off" aria-describedby="emailHelp" placeholder="Introduce el Email">
+          <input type="email" class="form-control"
+           formControlName="email" id="exampleInputEmail1"
+            autocomplete="off" aria-describedby="emailHelp"
+            (input)="hideErrorMessages()"
+            [ngClass]="{ 'invalid': shouldShowError('email') }" placeholder="Introduce el Email">
           <i class="fa-regular fa-envelope position-absolute top-50 translate-middle-y" style="left: 10px;"></i>
       </div>
       <span class="invalid-feedback" *ngIf="shouldShowError('email')">{{ getErrorMessage('email') }}</span>
 
-      <div class="form-group position-relative">
-        <input type="{{ inputTypePass }}" class="form-control" formControlName="password" placeholder="Introduce la contraseña">
+      <div class="form-group position-relative" >
+        <input type="{{ inputTypePass }}" class="form-control" 
+          formControlName="password" placeholder="Introduce la contraseña"
+          (input)="hideErrorMessages()"
+          [ngClass]="{ 'samePass': arePasswordsEqual() }"
+          [ngClass]="{ 'invalid': shouldShowError('password') }">
         <i class="fa-solid fa-lock position-absolute top-50 translate-middle-y" style="left: 10px;"></i>
         <i class="fa-regular fa-eye" 
-        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" 
-        (click)="togglePasswordVisibility('password')">
+          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" 
+          (click)="togglePasswordVisibility('password')">
         </i>
-    </div>
-    <span class="invalid-feedback" *ngIf="shouldShowError('password')">{{ getErrorMessage('password') }}</span>
-    
-    <div class="form-group position-relative">
-        <input type="{{ inputTypeConfirm }}" class="form-control" formControlName="confirmPassword" id="InputPassword2" placeholder="Confirma la contraseña">
+      </div>
+      <span class="invalid-feedback" *ngIf="shouldShowError('password')">{{ getErrorMessage('password') }}</span>
+      
+      <div class="form-group position-relative" >
+        <input type="{{ inputTypeConfirm }}" class="form-control" 
+          formControlName="confirmPassword" id="InputPassword2"
+          (input)="hideErrorMessages()"
+          [ngClass]="{ 'samePass': arePasswordsEqual() }"
+          [ngClass]="{ 'invalid': shouldShowError('confirmPassword') }" 
+          placeholder="Confirma la contraseña">
         <i class="fa-solid fa-lock position-absolute top-50 translate-middle-y" style="left: 10px;"></i>
-        <i class="fa-regular fa-eye" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" 
-         (click)="togglePasswordVisibility('confirmPassword')"></i>
-    </div>
+        <i class="fa-regular fa-eye" 
+          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" 
+          (click)="togglePasswordVisibility('confirmPassword')">
+        </i>
+      </div>
+      
     <span class="invalid-feedback" *ngIf="shouldShowError('confirmPassword')">{{ getErrorMessage('confirmPassword') }}</span>
     
       <div class="form-check">

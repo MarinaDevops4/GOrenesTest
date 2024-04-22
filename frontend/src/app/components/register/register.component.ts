@@ -94,7 +94,10 @@ success = '';
    // Determine if error should be shown for a control
    shouldShowError(controlName: string) {
     const control = this.registerForm.get(controlName);
-    return control?.invalid && (control?.dirty || control?.touched || this.showErrorMessages);
+    return (
+      control?.invalid &&
+      (control?.dirty || control?.touched || this.showErrorMessages)
+    );
   }
   
   // Get error message for a control
@@ -122,6 +125,13 @@ success = '';
     return this.success;
   }
 
+
+    // Ocultar mensajes de error
+    hideErrorMessages() {
+      this.showErrorMessages = false;
+    }
+
+
     // Mark control as invalid
     markControlAsInvalid(controlName: string) {
       const control = this.registerForm.get(controlName);
@@ -132,5 +142,12 @@ success = '';
         control.setErrors({ 'invalid': true }); // Marcar el control como inválido
       }
   }
-
+  
+  arePasswordsEqual(): boolean {
+    const password = this.registerForm.get('password')?.value;
+    const confirmPassword = this.registerForm.get('confirmPassword')?.value;
+    console.log(password, confirmPassword);
+    return password === confirmPassword;
+  }
+  
 }

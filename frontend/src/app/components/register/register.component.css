@@ -1,18 +1,16 @@
-.user-icon{
-    cursor: pointer;
-}
 
+/* 
 .card-body{
     color: rgba(255, 255, 255, 0.884); 
     background: #342341e0;
-  }
+  } */
 
   .center-btn{
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0.5rem;
-  }
+  } 
 
   .form-control:focus{
     border-color: #463552;
@@ -101,3 +99,8 @@
 .invalid {
   border-color: #dc3545; 
 }
+
+.samePass {
+  border-color: green;
+}
+
