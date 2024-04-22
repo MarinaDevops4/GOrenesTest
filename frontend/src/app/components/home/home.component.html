@@ -1,9 +1,33 @@
-<!-- <p>home works!</p> -->
-
 <div class="card-body text-center">
-    <div>
-        <h3>{{userName}}</h3>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ userName }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Intentos restantes: {{ intentosRestantes }}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">Preguntas restantes: {{ 5 - aciertos }}</h6>
+  
+              <div *ngIf="preguntaActual">
+                <h6>{{ preguntaActual.enunciado }}</h6>
+                <ul>
+                  <li *ngFor="let opcion of preguntaActual.opciones">
+                    <label>
+                      <input type="radio" name="respuesta" [value]="opcion" (change)="seleccionarRespuesta(opcion)">
+                      {{ opcion.texto }}
+                    </label>
+                  </li>
+                </ul>
+              </div>
+  
+              <div *ngIf="juegoTerminado">
+                <p>{{ mensaje }}</p>
+                <button (click)="reiniciarJuego()">Reiniciar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card-footer text-muted">
-    </div>
-</div>
+  </div>
+  

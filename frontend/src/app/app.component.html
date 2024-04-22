@@ -1,46 +1,52 @@
+<!-- Componente principal de la página -->
 <div class="main-bg">
   <canvas id="bg-canvas"></canvas>
   <div class="container">
     <div class="row">
-      <div class="card mb-3" style="width: 23rem; padding: 0px;">
-        <!-- Card Image -->
-        <img class="card-img-top" src="./assets/img/bg/main-bg.jpg" alt="Card image cap" width="auto" height="250px">
-        <!-- Header -->
+      <div class="card mb-3" style="width: auto; padding: 0px;">
+        <img class="card-img-top" src="./assets/img/bg/main-bg.jpg" alt="Card image cap"
+        [ngClass]="{ 'home-image': isLoggedIn, 'default-image': !isLoggedIn }">
+  
         <div class="row text-center mt-3">
           <div class="col-sm-8">
-            <h5 class="mb-3" style="float:right;">{{ isLoggedIn ? 'Bienvenido' : (isChangeForm ? 'Registro Usuario' : 'Acceso Usuario') }}</h5>
+            <!-- Título dinámico según el estado de autenticación -->
+            <h5 class="mb-3" style="float:right;">{{ isLoggedIn ? 'Panel de Usuario' : (isChangeForm ? 'Registro Usuario' : 'Acceso Usuario') }}</h5>
           </div>
           <div class="col-sm-4">
+            <!-- Icono de cerrar sesión o cambiar formulario según el estado de autenticación -->
             <ng-container *ngIf="isLoggedIn; else changeFormIcon">
-              <!-- Si el usuario está logueado, puedes agregar un icono para cerrar sesión o similar aquí -->
+              <!-- Icono de cerrar sesión -->
               <i class="fa-solid fa-sign-out-alt" (click)="logout()"  (mouseenter)="logoutHover = true" (mouseleave)="logoutHover = false"></i>
               <span class="bocadillo bocadillo-left" *ngIf="logoutHover">Cerrar Sesión</span>
             </ng-container>
             <ng-template #changeFormIcon>
+              <!-- Icono de iniciar sesión o registrarse según el estado del formulario -->
               <ng-container *ngIf="isChangeForm; else loginIcon">
+                <!-- Icono de iniciar sesión -->
                 <i class="fa-solid fa-user" (click)="changeForm()"
                    (mouseenter)="loginHover = true" (mouseleave)="loginHover = false"></i>
                 <span class="bocadillo bocadillo-left" *ngIf="loginHover">Inicia Sesión</span>
               </ng-container>
               <ng-template #loginIcon>
+                <!-- Icono de registrarse -->
                 <i class="fa-solid fa-user-plus" (click)="changeForm()" 
                    (mouseenter)="registerHover = true" (mouseleave)="registerHover = false"></i>
                 <span class="bocadillo bocadillo-left" *ngIf="registerHover">Registrarse</span>
               </ng-template>
             </ng-template>
           </div>
-          
-          
         </div>
-        <!-- Card Body -->
+        <!-- Cuerpo de la tarjeta -->
         <div class="card-body">
-          <!-- Mostrar home si el usuario está logueado -->
+          <!-- Mostrar el componente de inicio si el usuario está autenticado -->
           <ng-container *ngIf="isLoggedIn; else authenticationSection">
             <app-home></app-home>
           </ng-container>
           <!-- Sección de autenticación -->
           <ng-template #authenticationSection>
+            <!-- Mostrar el componente de inicio de sesión si no se está cambiando el formulario -->
             <app-login *ngIf="!isChangeForm"></app-login>
+            <!-- Mostrar el componente de registro si se está cambiando el formulario -->
             <div *ngIf="isChangeForm">
               <app-register></app-register>
             </div>

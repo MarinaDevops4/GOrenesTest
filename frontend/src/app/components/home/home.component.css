@@ -1,0 +1,12 @@
+ul{
+   list-style: none;
+   padding-left: 0px;
+}
+
+.correcta {
+    background-color: lightgreen; /* Fondo verde para respuestas correctas */
+}
+
+.incorrecta {
+    background-color: lightcoral; /* Fondo rojo para respuestas incorrectas */
+}

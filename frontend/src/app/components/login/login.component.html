@@ -11,11 +11,15 @@
           
           <!-- Password Input -->
           <div class="form-group position-relative">
-              <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1"
+              <input type="{{inputTypePass}}" class="form-control" formControlName="password" id="exampleInputPassword1"
                placeholder="Introduce el Contraseña" (input)="hideErrorMessages()"
                [ngClass]="{ 'invalid': shouldShowError('password') }" >
               <i class="fa-solid fa-lock position-absolute top-50 translate-middle-y" style="left: 10px;"></i>
-          </div>
+              <i class="fa-regular fa-eye" 
+              style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" 
+              (click)="togglePasswordVisibility()">
+           </i>
+            </div>
           <span class="invalid-feedback" *ngIf="shouldShowError('password')">{{ getErrorMessage('password') }}</span>
 
           <!-- Error Message -->

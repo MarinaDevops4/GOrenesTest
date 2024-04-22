@@ -21,50 +21,62 @@ import { AuthenticationService } from './services/Auth/authentication.service';
     ],
   })
   
-export class AppComponent implements OnInit{
-  title = 'frontend';
-  showRegisterForm: boolean = false;
-  isChangeForm: boolean = false;
-  isLoggedIn: boolean = false;
-  loginHover: boolean = false;
-  registerHover: boolean = false;
-  logoutHover: boolean = false;
+  export class AppComponent implements OnInit {
+    title = 'frontend';
+    showRegisterForm: boolean = false;
+    isChangeForm: boolean = false;
+    isLoggedIn: boolean = false;
+    loginHover: boolean = false;
+    registerHover: boolean = false;
+    logoutHover: boolean = false;
 
-
-  constructor(private sharedService: ShareComponentDataService, private authService: AuthenticationService){
-
-  }
   
+    constructor(
+      private sharedService: ShareComponentDataService,
+      private authService: AuthenticationService
+    ) {}
   
-  ngOnInit(): void {
-    this.isChangeForm = false;
-    this.sharedService.showRegisterForm$.subscribe(value => {
-      this.isChangeForm = value;
-      console.log(this.isChangeForm);
-      this.isLoggedIn = value;
-
-});
-    
-this.authService.getAuthenticationChanged().subscribe((loggedIn) => {
-  this.isLoggedIn = loggedIn;
-});
-   const userLoggedIn = this.authService.getAccessToken();
-   if(userLoggedIn){
-    this.isLoggedIn = true;
-    console.log('Is User Logged in: ', this.isLoggedIn);
-   }else{
-    this.isLoggedIn = false;
-   }
-   
-    
+    ngOnInit(): void {
+      // Inicialización de variables
+      this.isChangeForm = false;
+  
+      // Suscripción al cambio de formulario
+      this.sharedService.showRegisterForm$.subscribe((value) => {
+         // Solo actualiza isChangeForm si el formulario de registro está activo
+  if (value) {
+    this.isChangeForm = true;
   }
 
-  changeForm() {
-    this.isChangeForm = !this.isChangeForm;
+  // Si el usuario ya ha iniciado sesión, mantiene isLoggedIn en true
+  if (!value && this.isLoggedIn) {
+    this.isChangeForm = false; // Asegura que isChangeForm se restablezca si el usuario cierra sesión
   }
 
-  logout() {
-    this.authService.logout();
+  // Actualiza isLoggedIn basado en el valor actual de value
+  this.isLoggedIn = value;
+      });
+  
+      // Suscripción al cambio de estado de autenticación
+      this.authService.getAuthenticationChanged().subscribe((loggedIn) => {
+        this.isLoggedIn = loggedIn;
+      });
+  
+      // Verificación de estado de autenticación al iniciar la aplicación
+      const userLoggedIn = this.authService.getAccessToken();
+      if (userLoggedIn) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    }
+  
+    // Cambia entre los formularios de inicio de sesión y registro
+    changeForm() {
+      this.isChangeForm = !this.isChangeForm;
+    }
+  
+    // Cierra la sesión del usuario
+    logout() {
+      this.authService.logout();
+    }
   }
-
-}

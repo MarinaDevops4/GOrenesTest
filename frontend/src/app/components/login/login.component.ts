@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   error = '';
   success = '';
   isLoggedIn: boolean = false;
+  inputTypePass: string = 'password';
   
   constructor(
     private shareService: ShareComponentDataService,
@@ -89,6 +90,12 @@ export class LoginComponent implements OnInit {
       this.showErrorMessages = true;
     }
   }
+
+  
+  togglePasswordVisibility() {
+    this.inputTypePass = this.inputTypePass === 'password' ? 'text' : 'password';
+}
+
 
   // Determinar si se debe mostrar un error para un control
   shouldShowError(controlName: string) {

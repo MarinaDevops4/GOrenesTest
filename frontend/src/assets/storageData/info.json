@@ -1,0 +1,80 @@
+{
+  "preguntas": [
+    {
+      "id": 1,
+      "enunciado": "¿Cuál es el lenguaje de programación principal utilizado en Angular?",
+      "opciones": [
+        { "id": 1, "texto": "JavaScript" },
+        { "id": 2, "texto": "TypeScript", "correcta": true },
+        { "id": 3, "texto": "Java" },
+        { "id": 4, "texto": "Python" }
+      ]
+    },
+    {
+      "id": 2,
+      "enunciado": "¿Cuál es la herramienta principal para generar un nuevo proyecto Angular?",
+      "opciones": [
+        { "id": 1, "texto": "React" },
+        { "id": 2, "texto": "Angular CLI", "correcta": true },
+        { "id": 3, "texto": "Node.js" },
+        { "id": 4, "texto": "Angular Material" }
+      ]
+    },
+    {
+      "id": 3,
+      "enunciado": "¿Qué significa la sigla 'SPA' en Angular?",
+      "opciones": [
+        { "id": 1, "texto": "Single Page Application", "correcta": true },
+        { "id": 2, "texto": "Simple Programming Algorithm" },
+        { "id": 3, "texto": "Service Provider Agreement" },
+        { "id": 4, "texto": "Serverless Platform Architecture" }
+      ]
+    },
+    {
+      "id": 4,
+      "enunciado": "¿Qué se utiliza para manejar el enrutamiento en Angular?",
+      "opciones": [
+        { "id": 1, "texto": "NgModule" },
+        { "id": 2, "texto": "RouterModule", "correcta": true },
+        { "id": 3, "texto": "HttpClient" },
+        { "id": 4, "texto": "FormsModule" }
+      ]
+    }, {
+      "id": 5,
+      "enunciado": "¿Cuál es el método utilizado para suscribirse a un observable en Angular?",
+      "opciones": [
+        { "id": 1, "texto": "subscribe()" },
+        { "id": 2, "texto": "then()" },
+        { "id": 3, "texto": "pipe()" },
+        { "id": 4, "texto": "map()" }
+      ]
+    },{
+    "id": 6,
+    "enunciado": "¿Qué módulo se utiliza para realizar solicitudes HTTP en Angular?",
+    "opciones": [
+      { "id": 1, "texto": "FormsModule" },
+      { "id": 2, "texto": "HttpClientModule", "correcta": true },
+      { "id": 3, "texto": "RouterModule" },
+      { "id": 4, "texto": "BrowserModule" }
+    ]
+  }, {
+    "id": 7,
+    "enunciado": "¿Cuál es el operador utilizado para la concatenación de observables en Angular?",
+    "opciones": [
+      { "id": 1, "texto": "switchMap()" },
+      { "id": 2, "texto": "mergeMap()" },
+      { "id": 3, "texto": "concatMap()" },
+      { "id": 4, "texto": "forkJoin()", "correcta": true }
+    ]
+  }, {
+    "id": 8,
+    "enunciado": "¿Qué decorador se utiliza para marcar una clase como un componente en Angular?",
+    "opciones": [
+      { "id": 1, "texto": "@Component", "correcta": true },
+      { "id": 2, "texto": "@NgModule" },
+      { "id": 3, "texto": "@Injectable" },
+      { "id": 4, "texto": "@Directive" }
+    ]
+  }
+  ]
+}
