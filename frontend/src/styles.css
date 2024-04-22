@@ -67,7 +67,8 @@ label {
 }
 
 /* Cursor apuntador para elementos con etiqueta i */
-i {
+.fa-user-plus ,
+  .fa-user, .fa-sign-out-alt  {
   cursor: pointer;
 }
 

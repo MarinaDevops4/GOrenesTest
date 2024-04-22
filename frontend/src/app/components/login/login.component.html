@@ -23,7 +23,7 @@
           <span class="invalid-feedback" *ngIf="shouldShowError('password')">{{ getErrorMessage('password') }}</span>
 
           <!-- Error Message -->
-          <div *ngIf="showErrorMessages" class="error-message fade-in-out" [ngClass]="{'visible': showErrorMessages}">{{ error }}</div>
+          <div *ngIf="showErrorMessages" class="error-message fade-in-out invalid-feedback" [ngClass]="{'visible': showErrorMessages}">{{ error }}</div>
 
           <!-- Submit Button -->
           <div class="center-btn">

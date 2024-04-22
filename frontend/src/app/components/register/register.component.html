@@ -56,7 +56,9 @@
           <label class="form-check-label" for="exampleCheck1">Acepta los términos y condiciones del servicio.</label>
       </div>
       <span class="invalid-feedback" *ngIf="shouldShowError('accepted')">{{ getErrorMessage('accepted') }}</span>
-
+      <div *ngIf="errorMessage" class="invalid-feedback">
+        {{ errorMessage }}
+      </div>
       
       <div class="center-btn">
           <button type="submit" class="btn btn-primary btn-acceder">Registrate</button>

@@ -11,6 +11,7 @@ export class ShareComponentDataService {
   showRegisterForm$ = this.showRegisterFormSource.asObservable();
   constructor() { }
   setSharedVariable(value: boolean) {
+    console.log('setSharedVariable', value);
     this.showRegisterFormSource.next(value);
   }
 }

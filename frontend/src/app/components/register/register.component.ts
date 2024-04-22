@@ -25,7 +25,7 @@ showErrorMessages:boolean = false;
 showSuccessMessage:boolean = false;
 
 success = '';
-
+errorMessage: string = '';
 
 
   constructor(private authService: AuthenticationService, private formBuilder: FormBuilder, private sharedService: ShareComponentDataService) {
@@ -66,22 +66,30 @@ success = '';
 
       const userData = {
         username: this.registerForm.value.name,
-        email: this.registerForm.value.email,
+        email: this.registerForm.value.email.toLowerCase(),
         password: this.registerForm.value.password
       };
 
-    if(userData){
-      this.authService.registerUser(userData)
-      .subscribe(response => {
-        console.log('User registered successfully:', response);
-      
-        this.sharedService.setSharedVariable(false);
-
-      }, error => {
-        console.error('Error registering user:', error);
-        
-      });
-    }
+      if (userData) {
+        this.authService.registerUser(userData)
+          .subscribe(response => {
+            console.log('User registered successfully:', response);
+            // Verificar si el registro fue exitoso
+            if (response && response.message === 'Usuario registrado exitosamente') {
+              // Emite el evento para mostrar el formulario de inicio de sesión
+              this.sharedService.setSharedVariable(true);
+            } else {
+              // El usuario ya existe en la base de datos, muestra un mensaje
+              this.errorMessage = 'El usuario ya existe en la base de datos';
+              console.error(this.errorMessage);
+              // Puedes mostrar un mensaje al usuario aquí si lo deseas
+            }
+          }, error => {
+            console.error('Error registering user:', error);
+            this.errorMessage = 'El usuario ya existe en la base de datos';
+            console.error(this.errorMessage);
+          });
+      }
 
 
 
