@@ -10,7 +10,7 @@ export class AuthenticationService {
   private authenticationChanged = new BehaviorSubject<boolean>(this.isAuthenticated());
 
   // URL de la API
-  private apiURL = 'http://localhost:3000/api/users/';
+  private apiURL = 'http://localhost:3000/api/users';
 
   constructor(private http: HttpClient) {}
 

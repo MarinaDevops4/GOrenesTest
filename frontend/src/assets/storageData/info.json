@@ -43,7 +43,7 @@
       "id": 5,
       "enunciado": "¿Cuál es el método utilizado para suscribirse a un observable en Angular?",
       "opciones": [
-        { "id": 1, "texto": "subscribe()" },
+        { "id": 1, "texto": "subscribe()","correcta": true},
         { "id": 2, "texto": "then()" },
         { "id": 3, "texto": "pipe()" },
         { "id": 4, "texto": "map()" }
