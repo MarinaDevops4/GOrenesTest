@@ -13,16 +13,17 @@
           <div class="col-sm-4">
             <ng-container *ngIf="isLoggedIn; else changeFormIcon">
               <!-- Si el usuario está logueado, puedes agregar un icono para cerrar sesión o similar aquí -->
-              <i class="fa-solid fa-sign-out-alt" (click)="logout()" title="Cerrar sesión"></i>
+              <i class="fa-solid fa-sign-out-alt" (click)="logout()"  (mouseenter)="logoutHover = true" (mouseleave)="logoutHover = true"></i>
+              <span class="bocadillo bocadillo-left" *ngIf="logoutHover">Cerrar Sesión</span>
             </ng-container>
             <ng-template #changeFormIcon>
               <ng-container *ngIf="isChangeForm; else loginIcon">
-                <i class="fa-solid fa-user" (click)="changeForm()" title="Iniciar sesión" 
+                <i class="fa-solid fa-user" (click)="changeForm()"
                    (mouseenter)="loginHover = true" (mouseleave)="loginHover = false"></i>
                 <span class="bocadillo bocadillo-left" *ngIf="loginHover">Inicia Sesión</span>
               </ng-container>
               <ng-template #loginIcon>
-                <i class="fa-solid fa-user-plus" (click)="changeForm()" title="Registrarse" 
+                <i class="fa-solid fa-user-plus" (click)="changeForm()" 
                    (mouseenter)="registerHover = true" (mouseleave)="registerHover = false"></i>
                 <span class="bocadillo bocadillo-left" *ngIf="registerHover">Registrarse</span>
               </ng-template>

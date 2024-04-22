@@ -28,6 +28,7 @@ export class AppComponent implements OnInit{
   isLoggedIn: boolean = false;
   loginHover: boolean = false;
   registerHover: boolean = false;
+  logoutHover: boolean = false;
 
 
   constructor(private sharedService: ShareComponentDataService, private authService: AuthenticationService){

@@ -138,15 +138,16 @@ button:hover {
 
 .bocadillo {
   position: absolute;
-  background-color: #72528ada;
+  background-color: #72528afd;
   color: #fff;
-  padding: 8px 16px;
+  padding: 8px 2px;
   border-radius: 6px;
   font-size: 14px;
-  margin-left: 10px;
-  margin-bottom: 5px;
+  margin-left: 18px;
+  margin-top: -6px;
   z-index: 1;
-  width: 120px; 
+  width: 120px;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.7);
 }
 
 .bocadillo::before {
@@ -170,7 +171,7 @@ button:hover {
   left: -16px; /* Ajusta la posición horizontal de la punta */
   top: 50%; /* Centra la punta verticalmente */
   transform: translateY(-50%); /* Ajusta la posición vertical de la punta */
-  border-color: transparent #72528ada transparent transparent;
+  border-color: transparent #72528afd transparent transparent;
 }
 .bocadillo-right::before {
   right: 20px;
