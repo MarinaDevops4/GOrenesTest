@@ -1,0 +1,32 @@
+      <!-- Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"  *ngIf="!formSubmittedSuccessfully" [ngClass]="{'hidden': formSubmittedSuccessfully}">
+          <!-- Email Input -->
+          <div class="form-group position-relative">
+              <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" autocomplete="off" 
+              aria-describedby="emailHelp" placeholder="Introduce el Email" (input)="hideErrorMessages()"
+              [ngClass]="{ 'invalid': shouldShowError('email') }">
+              <i class="fa-regular fa-envelope position-absolute top-50 translate-middle-y" style="left: 10px;"></i>
+          </div>
+          <span class="invalid-feedback" *ngIf="shouldShowError('email')">{{ getErrorMessage('email') }}</span>
+          
+          <!-- Password Input -->
+          <div class="form-group position-relative">
+              <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1"
+               placeholder="Introduce el Contraseña" (input)="hideErrorMessages()"
+               [ngClass]="{ 'invalid': shouldShowError('password') }" >
+              <i class="fa-solid fa-lock position-absolute top-50 translate-middle-y" style="left: 10px;"></i>
+          </div>
+          <span class="invalid-feedback" *ngIf="shouldShowError('password')">{{ getErrorMessage('password') }}</span>
+
+          <!-- Error Message -->
+          <div *ngIf="showErrorMessages" class="error-message fade-in-out" [ngClass]="{'visible': showErrorMessages}">{{ error }}</div>
+
+          <!-- Submit Button -->
+          <div class="center-btn">
+              <button type="submit" class="btn btn-primary btn-acceder">Accede</button>
+          </div>
+      </form>
+
+
+
+

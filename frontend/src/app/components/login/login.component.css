@@ -1,0 +1,105 @@
+/* CARD STYLES */
+.card {
+  border: 1px solid #33233f;
+  background: #33233f;
+  -webkit-box-shadow: -5px 3px 25px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 3px 25px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: -5px 3px 25px 3px rgba(0, 0, 0, 0.75);
+}
+
+.card-body {
+  color: rgba(255, 255, 255, 0.884);
+  background: #342341e0;
+}
+.form-control:focus{
+  border-color: #463552;
+  background-color: #463552;
+  color: rgba(255, 255, 255, 0.884); 
+  box-shadow: none;
+ }
+
+/* ERRORS STYLES */
+.invalid-feedback {
+  display: block;
+  color: #cf6b6b;
+  font-size: 0.7rem;
+  margin-bottom: 0.6rem;
+  padding-left: 0.5rem;
+}
+
+.invalid {
+  border-color: #dc3545; 
+}
+
+
+/* SUCCESS & ERROR MESSAGE STYLES */
+.error-message {
+  color: #cf6b6b;
+  text-align: center;
+  font-size: 0.9em;
+  margin: 0.5em;
+  background: #463552;
+  border-radius: 10px;
+}
+.success-message {
+  color: #9ac59a;
+  text-align: center;
+  font-size: 0.9em;
+  margin: 0.5em;
+  background: #463552;
+  border-radius: 10px;
+}
+
+/* TRANSITIONS STYLES */
+.fade-in-out {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in-out.hidden {
+  opacity: 0;
+}
+
+.fade-in-out.visible {
+  opacity: 1;
+}
+
+.new-user-icon {
+  cursor: pointer;
+}
+
+.form-control:focus {
+  border-color: #463552;
+  box-shadow: none;
+}
+
+::-webkit-input-placeholder {
+  color: rgb(168, 168, 168);
+}
+
+.center-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+}
+
+button {
+  border-radius: 20px;
+  font-size: 14px;
+  border-color: #301b30;
+  background-color: #00DBDE;
+  background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+  -webkit-box-shadow: 27px 26px 8px -19px rgba(184, 184, 184, 1);
+  -moz-box-shadow: 27px 26px 8px -19px rgba(184, 184, 184, 1);
+  box-shadow: 27px 26px 8px -19px rgba(184, 184, 184, 1);
+  transition: background-color 200ms ease-in, background-image 200ms ease-out;
+}
+
+button:hover {
+  border-color: #301b30;
+  background-color: #8BC6EC;
+  background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+  color: #000652;
+}
+
+
