@@ -108,7 +108,7 @@ html, body {
 ::-webkit-input-placeholder {
   color: rgb(168, 168, 168);
 }
-
+i{cursor: pointer;}
 .center-btn {
   display: flex;
   align-items: center;
