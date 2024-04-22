@@ -1,43 +1,72 @@
 # GOrenesTest
+![alt text](image.png)
 
-# Formulario de Login
+## Tabla de Contenidos
 
-Este proyecto consiste en la creación de un formulario de login donde los usuarios puedan ingresar con su nombre de usuario y contraseña. La idea principal es demostrar habilidades técnicas y otras características sobre tu persona a través de esta funcionalidad.
+- [Formulario de Login](#formulario-de-login)
+  - [Descripción del Ejercicio](#descripción-del-ejercicio)
+  - [Implementación](#implementación)
+  - [Entrega del Proyecto](#entrega-del-proyecto)
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Contribución](#contribución)
+- [Autor](#autor)
 
-## Descripción del Ejercicio
+## Formulario de Login
 
-A través de una funcionalidad pequeña, puedas demostrar habilidades técnicas y otras características sobre tu persona. En el ejercicio puedes quedarte en la superficie del problema o profundizar cuanto quieras. Ten en cuenta que será tu carta de presentación para nosotros.
+Este proyecto consiste en la creación de un formulario de login donde los usuarios puedan ingresar con su nombre de usuario y contraseña.
 
-El ejercicio consiste en hacer un formulario de login con un nombre de usuario y contraseña. Los datos sobre usuarios pueden venir de una base de datos, en memoria, leídos de un fichero u otros orígenes de datos que creas que pueden representar un desafío (este es un ejemplo de un caso en el que puedes profundizar más o menos).
+### Descripción del Ejercicio
 
-La parte frontal la puedes hacer utilizando cualquier framework que consideres, aunque nuestra recomendación es Angular.
+El objetivo es demostrar habilidades técnicas y otras características relevantes a través de esta funcionalidad. El formulario debe ser capaz de manejar tanto inicios de sesión correctos como incorrectos.
 
-El formulario de login debe responder correctamente tanto a un login correcto como a un login erróneo, mostrando visiblemente en pantalla el resultado de la operación. La creatividad en este punto para hacer esto es ilimitada.
+### Implementación
 
-## Implementación
+Se recomienda utilizar Angular para la implementación del formulario. Se puede profundizar en la implementación utilizando diferentes fuentes de datos para los usuarios.
 
-El proyecto puede ser implementado utilizando cualquier framework, sin embargo, se recomienda Angular. Puedes profundizar en la implementación utilizando diferentes fuentes de datos para los usuarios.
+### Entrega del Proyecto
 
-## Entrega del Proyecto
+El producto final debe ser el acceso a un repositorio git público o privado que hayas creado. [Repositorio del Proyecto](https://github.com/MarinaDevops4/GOrenesTest)
 
-El producto que se debe entregar es el acceso a un repositorio git público (o privado) que hayas creado. Nosotros analizaremos el proyecto desde ese punto en tareas.
+## Instalación
+
+1. **Instalar Node.js:** Descarga e instala Node.js desde [https://nodejs.org/](https://nodejs.org/).
+2. **Instalar MongoDB:** Sigue las instrucciones para tu sistema operativo desde [https://docs.mongodb.com/manual/installation/](https://docs.mongodb.com/manual/installation/).
+3. **Clonar el Repositorio:** Ejecuta `git clone https://github.com/MarinaDevops4/GOrenesTest.git` en tu terminal.
+4. **Instalar Dependencias del Servidor:** Navega hasta el directorio del servidor (`cd GOrenesTest/server`) y ejecuta `npm install`.
+5. **Configurar MongoDB:** Asegúrate de que MongoDB esté configurado y en ejecución en tu sistema local.
+6. **Ejecutar el Servidor:** Ejecuta `npm run dev` en el directorio del servidor.
+7. **Instalar Dependencias del Cliente:** Navega hasta el directorio del cliente (`cd ../client`) y ejecuta `npm install`.
+8. **Ejecutar la Aplicación Cliente:** Ejecuta `ng serve` en el directorio del cliente.
+
+## Uso
+
+Una vez que la aplicación está instalada y en funcionamiento, sigue estos pasos para usarla:
+
+- **Registro de Usuario:** Crea una cuenta si la aplicación incluye funcionalidad de registro.
+- **Inicio de Sesión:** Inicia sesión con tus credenciales de usuario.
+- **Explorar Funcionalidades:** Explora las diferentes funcionalidades disponibles en la aplicación.
+- **Interactuar con la Interfaz de Usuario:** Utiliza la interfaz de usuario para realizar acciones específicas.
+- **Cerrar Sesión:** Cierra sesión para proteger tu cuenta y datos personales.
 
 ## Tecnologías Utilizadas
 
-- Angular (Recomendado)
-- HTML
-- CSS
-- JavaScript/TypeScript
+- **Angular:** : v17.3.5 [Documentación de Angular](https://angular.io/docs)
+- **HTML:** [Documentación de HTML (MDN Web Docs)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- **CSS:** [Documentación de CSS (MDN Web Docs)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- **JavaScript/TypeScript:** 
+  - [Documentación de JavaScript (MDN Web Docs)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+  - [Documentación de TypeScript](https://www.typescriptlang.org/docs/)
+- **Node.js:** : v18.18.2 [Documentación de Node.js](https://nodejs.org/docs/latest-v16.x/api/)
+- **MongoDB:** : v7.0.2 [Documentación de MongoDB](https://docs.mongodb.com/)
+- **Express:** : 4.19.2 [Documentación de Express](https://expressjs.com/en/4x/api.html)
 
-- NodeJS
-- MongoDB
-- Express
 
 ## Contribución
 
---
+¡Toda contribución es bienvenida!
 
 ## Autor
 
 [Marina Barceló Gómez]
-
