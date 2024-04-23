@@ -101,8 +101,15 @@ input[type="email"], input[type="password"], input[type="text"] {
   height: 250px;
 }
 
+.main-title{
+    float:right;
+}
 
-
+@media (max-width: 600px) {
+  .main-title {
+    float:none; 
+  }
+}
 
 
 
